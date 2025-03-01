@@ -1,13 +1,21 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const services = [
   {
     name: "AI as a Service",
     description:
-      "Leverage cutting-edge AI solutions to transform your business operations and decision-making processes.",
+      "Harness the power of artificial intelligence to transform your business operations and decision-making processes.",
+    features: [
+      "Custom AI Model Development",
+      "Machine Learning Solutions",
+      "Natural Language Processing",
+      "Computer Vision Applications",
+      "Predictive Analytics",
+      "AI Integration Services",
+    ],
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +36,15 @@ const services = [
   {
     name: "Hybrid IT Solutions",
     description:
-      "Optimize your infrastructure with a perfect blend of on-premises and cloud solutions tailored to your needs.",
+      "Optimize your infrastructure with a perfect blend of on-premises and cloud solutions tailored to your business needs.",
+    features: [
+      "Cloud Migration Services",
+      "Hybrid Cloud Architecture",
+      "Infrastructure Optimization",
+      "Cloud Cost Management",
+      "DevOps Implementation",
+      "Disaster Recovery Planning",
+    ],
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -50,6 +66,14 @@ const services = [
     name: "Networking & Security",
     description:
       "Protect your digital assets with enterprise-grade networking and security solutions designed for modern threats.",
+    features: [
+      "Network Infrastructure Design",
+      "Cybersecurity Solutions",
+      "Threat Detection & Response",
+      "Zero Trust Architecture",
+      "Compliance Management",
+      "Security Auditing",
+    ],
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -69,74 +93,36 @@ const services = [
   },
 ];
 
-export default function Home() {
+export default function Services() {
   return (
-    <div className="bg-white">
-      {/* Hero section */}
-      <div className="relative isolate overflow-hidden bg-gradient-to-b from-blue-100/20">
-        <div className="mx-auto max-w-7xl pb-24 pt-10 sm:pb-32 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:py-40">
+    <div className="bg-white py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="px-6 lg:px-0 lg:pt-4"
+            transition={{ duration: 0.5 }}
           >
-            <div className="mx-auto max-w-2xl">
-              <div className="max-w-lg">
-                <h1 className="mt-10 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-                  Transform Your Business with Smart Technology
-                </h1>
-                <p className="mt-6 text-lg leading-8 text-gray-600">
-                  TechMaze Solutions is your trusted B2B technology partner,
-                  delivering cutting-edge AI, Hybrid IT, and Security solutions
-                  that drive innovation and growth.
-                </p>
-                <div className="mt-10 flex items-center gap-x-6">
-                  <Link
-                    href="/contact"
-                    className="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                  >
-                    Get started
-                  </Link>
-                  <Link
-                    href="/services"
-                    className="text-sm font-semibold leading-6 text-gray-900"
-                  >
-                    Learn more <span aria-hidden="true">→</span>
-                  </Link>
-                </div>
-              </div>
-            </div>
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              Our Services
+            </h2>
+            <p className="mt-2 text-lg leading-8 text-gray-600">
+              Comprehensive technology solutions to drive your business forward
+            </p>
           </motion.div>
-        </div>
-      </div>
-
-      {/* Services section */}
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-base font-semibold leading-7 text-blue-600">
-            Enterprise Solutions
-          </h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Everything you need to accelerate your business
-          </p>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
-            Discover our comprehensive suite of technology solutions designed to
-            help your business thrive in the digital age.
-          </p>
         </div>
         <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
           <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
-            {services.map((service) => (
+            {services.map((service, index) => (
               <motion.div
                 key={service.name}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="flex flex-col"
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                className="flex flex-col bg-white rounded-2xl shadow-sm ring-1 ring-gray-200 p-8"
               >
-                <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
+                <dt className="flex items-center gap-x-3 text-lg font-semibold leading-7 text-gray-900">
                   <div className="h-10 w-10 flex items-center justify-center rounded-lg bg-blue-600 text-white">
                     {service.icon}
                   </div>
@@ -144,9 +130,28 @@ export default function Home() {
                 </dt>
                 <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
                   <p className="flex-auto">{service.description}</p>
+                  <ul className="mt-6 space-y-4">
+                    {service.features.map((feature) => (
+                      <li key={feature} className="flex gap-x-3">
+                        <svg
+                          className="h-6 w-5 flex-none text-blue-600"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                          aria-hidden="true"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
                   <p className="mt-6">
                     <Link
-                      href="/services"
+                      href="/contact"
                       className="text-sm font-semibold leading-6 text-blue-600"
                     >
                       Learn more <span aria-hidden="true">→</span>
