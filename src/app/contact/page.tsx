@@ -42,7 +42,7 @@ export default function Contact() {
 
       setSubmitSuccess(true);
       reset();
-    } catch (_: unknown) {
+    } catch {
       setSubmitError("Something went wrong. Please try again later.");
     } finally {
       setIsSubmitting(false);
